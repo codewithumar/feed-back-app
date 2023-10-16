@@ -9,4 +9,6 @@ interface CommentRepositoryInterface
     public function show($id);
     public function update($id,  $data);
     public function destroy($id);
+
+    public function getCommentsForFeedback($id, $page, $limit);
 }

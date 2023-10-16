@@ -56,4 +56,14 @@ class CommentRepository implements CommentRepositoryInterface
 
         $comment->delete();
     }
+
+
+    public function getCommentsForFeedback($id, $page, $limit)
+    {
+        $query = Comment::where('feedback_id', $id);
+
+        $comments = $query->paginate($limit, page: $page);
+
+        return $comments;
+    }
 }

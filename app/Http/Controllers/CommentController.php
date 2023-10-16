@@ -63,4 +63,14 @@ class CommentController extends Controller
 
         return response()->json(['message' => 'Comment record deleted successfully.']);
     }
+
+    public function getCommentsForFeedback(Request $request, $id)
+    {
+        $page = $request->query('page', 1);
+        $limit = $request->query('limit', 5);
+
+        $comments = $this->commentRepository->getCommentsForFeedback($id, $page, $limit);
+
+        return response()->json($comments);
+    }
 }
