@@ -11,7 +11,10 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    //logout
     Route::post('/logout', [UserController::class, 'logout']);
+
+    //feedback routes
     Route::prefix('/feedback')->group(function () {
         Route::get('/', [FeedbackController::class, 'index']);
         Route::post('/', [FeedbackController::class, 'store']);
@@ -20,6 +23,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{id}', [FeedbackController::class, 'destroy']);
         Route::post('/vote/{id}', [FeedbackController::class, 'voteCount']);
     });
+
+    //comment routes
     Route::prefix('/comment')->group(function () {
         Route::get('/', [CommentController::class, 'index']);
         Route::post('/', [CommentController::class, 'store']);
